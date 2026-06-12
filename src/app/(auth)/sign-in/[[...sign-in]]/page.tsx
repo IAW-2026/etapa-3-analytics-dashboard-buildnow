@@ -20,7 +20,7 @@ export default function SignInPage() {
 
             <div className="sm:mx-auto sm:w-full sm:max-w-md flex justify-center">
                 <SignIn
-                    forceRedirectUrl="/dashboard"
+                    fallbackRedirectUrl="/dashboard"
                     appearance={{
                         elements: {
                             rootBox: "mx-auto w-full",

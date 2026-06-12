@@ -1,7 +1,10 @@
+import { SignOut } from "@/components/SignOut";
+
 export default function DashboardPage() {
   return (
     <div>
-      aca
+      <h1>Dashboard</h1>
+      <SignOut />
     </div>
   );
 }
