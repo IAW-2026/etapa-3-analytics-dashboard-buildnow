@@ -1,4 +1,3 @@
-import React from 'react';
 import { KPIGrid } from '@/modules/seller/components/KPIGrid';
 import { RevenueChart } from '@/modules/seller/components/RevenueChart';
 import { OrderFunnel } from '@/modules/seller/components/OrderFunnel';
@@ -30,10 +29,10 @@ export default async function OrdersDashboardPage({ searchParams }: Props) {
   // Await searchParams ya que en Next.js 15+ es asíncrono
   const params = await searchParams;
   const rawPeriod = typeof params.period === 'string' ? params.period : '7d';
-  
+
   // Validamos que el periodo sea correcto, si no fallback a '7d'
-  const currentPeriod: Period = ['7d', '30d', '90d'].includes(rawPeriod) 
-    ? (rawPeriod as Period) 
+  const currentPeriod: Period = ['7d', '30d', '90d'].includes(rawPeriod)
+    ? (rawPeriod as Period)
     : '7d';
 
   // Realizamos el fetch de los datos en paralelo usando los servicios (Fase 2 y 3)
@@ -67,8 +66,6 @@ export default async function OrdersDashboardPage({ searchParams }: Props) {
             <h1 className="text-2xl font-bold text-slate-900">Panel de administración</h1>
             <p className="text-slate-500 text-sm mt-1">Vista global de la plataforma — todas las tiendas y órdenes</p>
           </div>
-
-          {/* Period Selector Interactivo (Fase 4) */}
           <PeriodSelector />
         </div>
 
