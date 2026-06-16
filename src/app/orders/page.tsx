@@ -14,7 +14,6 @@ import {
   getStoresRanking,
   getStatusDonut,
   getCategorySales,
-  getPlatformHealth,
   getTopProducts
 } from '@/modules/seller/services/analytics';
 import { Period } from '@/modules/seller/types';
@@ -43,7 +42,6 @@ export default async function OrdersDashboardPage({ searchParams }: Props) {
     storesRanking,
     statusDonut,
     categorySales,
-    platformHealth,
     topProducts
   ] = await Promise.all([
     getPlatformSummary(currentPeriod),
@@ -52,7 +50,6 @@ export default async function OrdersDashboardPage({ searchParams }: Props) {
     getStoresRanking(currentPeriod),
     getStatusDonut(currentPeriod),
     getCategorySales(currentPeriod),
-    getPlatformHealth(),
     getTopProducts(currentPeriod)
   ]);
 
@@ -98,9 +95,6 @@ export default async function OrdersDashboardPage({ searchParams }: Props) {
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div>
             <CategoryChart data={categorySales} />
-          </div>
-          <div>
-            <PlatformHealth data={platformHealth} />
           </div>
           <div>
             <TopProducts data={topProducts} />
