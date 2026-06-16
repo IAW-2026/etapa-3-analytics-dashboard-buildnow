@@ -37,13 +37,7 @@ export function KPIGrid({ data }: KPIGridProps) {
         </div>
         <div>
           <p className="text-3xl font-bold text-slate-800">{data.totalOrders.current}</p>
-          <div className="flex items-center gap-2 mt-1">
-            <span className={`text-sm font-medium flex items-center ${data.totalOrders.trend >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-              {data.totalOrders.trend >= 0 ? <TrendingUp size={14} className="mr-1" /> : <TrendingDown size={14} className="mr-1" />}
-              {data.totalOrders.trend > 0 ? '+' : ''}{data.totalOrders.trend}%
-            </span>
-            <span className="text-sm text-slate-500">vs período anterior</span>
-          </div>
+          <div className="mt-1 h-5" />
         </div>
       </div>
 
@@ -55,13 +49,7 @@ export function KPIGrid({ data }: KPIGridProps) {
         </div>
         <div>
           <p className="text-3xl font-bold text-slate-800">{formatCurrency(data.platformRevenue.current)}</p>
-          <div className="flex items-center gap-2 mt-1">
-            <span className={`text-sm font-medium flex items-center ${data.platformRevenue.trend >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-              {data.platformRevenue.trend >= 0 ? <TrendingUp size={14} className="mr-1" /> : <TrendingDown size={14} className="mr-1" />}
-              {data.platformRevenue.trend > 0 ? '+' : ''}{data.platformRevenue.trend}%
-            </span>
-            <span className="text-sm text-slate-500">vs período anterior</span>
-          </div>
+          <div className="mt-1 h-5" />
         </div>
       </div>
 
