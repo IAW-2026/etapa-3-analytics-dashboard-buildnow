@@ -1,8 +1,8 @@
 import { auth } from '@clerk/nextjs/server';
-import { 
-  PlatformSummary, RevenueDataPoint, OrderFunnelData, 
-  StoreRankingData, StatusDonutData, CategorySalesData, 
-  PlatformHealthData, TopProductData, Period 
+import {
+  PlatformSummary, RevenueDataPoint, OrderFunnelData,
+  StoreRankingData, StatusDonutData, CategorySalesData,
+  PlatformHealthData, TopProductData, Period
 } from '../types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_SELLER_URL || 'http://localhost:3001';
@@ -60,10 +60,6 @@ export async function getStatusDonut(period: Period): Promise<StatusDonutData[]>
 
 export async function getCategorySales(period: Period): Promise<CategorySalesData[]> {
   return fetchWithAuth<CategorySalesData[]>('category-sales', period);
-}
-
-export async function getPlatformHealth(): Promise<PlatformHealthData> {
-  return fetchWithAuth<PlatformHealthData>('platform-health');
 }
 
 export async function getTopProducts(period: Period): Promise<TopProductData[]> {
