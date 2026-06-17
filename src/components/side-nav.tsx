@@ -12,7 +12,8 @@ const navItems = [
   { label: 'Dashboard', href: '/', icon: LayoutDashboard },
   { label: 'Stores', href: '/stores', icon: Store },
   { label: 'Orders', href: '/orders', icon: ShoppingCart },
-  { label: 'Delivery', href: '/delivery', icon: Truck }
+  { label: 'Delivery', href: '/delivery', icon: Truck },
+  { label: 'Buyers', href: '/buyers', icon: Users }
 ];
 
 interface SideNavProps {

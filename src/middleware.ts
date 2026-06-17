@@ -1,20 +1,34 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isDashboardRoute = createRouteMatcher(['/dashboard(.*)']);
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)']);
 
 export default clerkMiddleware(async (auth, req) => {
-  if (isDashboardRoute(req)) {
-    const { userId, sessionClaims, redirectToSignIn } = await auth();
+  const { userId, sessionClaims, redirectToSignIn } = await auth();
 
-    if (!userId) {
-      return redirectToSignIn();
-    }
+  // Log de debug (se puede borrar después)
+  console.log('[Analytics Middleware Debug]', {
+    userId,
+    roleMetadata: sessionClaims?.metadata?.role,
+    rolePublicMetadata: (sessionClaims as any)?.publicMetadata?.role,
+    url: req.url
+  });
 
-    const role = sessionClaims?.metadata?.role;
+  // No proteger rutas públicas (login)
+  if (isPublicRoute(req)) {
+    return;
+  }
 
-    if (role !== 'admin') {
-      return redirectToSignIn();
-    }
+  // Todas las demás rutas requieren autenticación
+  if (!userId) {
+    return redirectToSignIn();
+  }
+
+  // Verificar rol: aceptar tanto 'admin' como 'superadmin'
+  const role = sessionClaims?.metadata?.role as string | undefined;
+  const allowedRoles = ['admin', 'superadmin'];
+
+  if (!role || !allowedRoles.includes(role)) {
+    return redirectToSignIn();
   }
 });
 
@@ -26,3 +40,4 @@ export const config = {
     '/(api|trpc)(.*)',
   ],
 };
+
