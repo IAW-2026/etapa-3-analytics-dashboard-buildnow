@@ -10,29 +10,29 @@ export function BuyerMetrics({ summary }: BuyerMetricsProps) {
 
   const metrics = [
     {
-      title: 'Total Buyers',
-      value: summary.totalBuyers.toLocaleString(),
+      title: 'Compradores totales',
+      value: summary.totalBuyers.toLocaleString('es-AR'),
       icon: Users,
       color: 'text-blue-500',
       bgColor: 'bg-blue-500/10',
     },
     {
-      title: 'Buyers with Address',
-      value: summary.buyersWithAddress.toLocaleString(),
+      title: 'Compradores con dirección',
+      value: summary.buyersWithAddress.toLocaleString('es-AR'),
       icon: MapPin,
       color: 'text-green-500',
       bgColor: 'bg-green-500/10',
     },
     {
-      title: 'Active Carts',
-      value: summary.activeCarts.toLocaleString(),
+      title: 'Carritos activos',
+      value: summary.activeCarts.toLocaleString('es-AR'),
       icon: ShoppingCart,
       color: 'text-purple-500',
       bgColor: 'bg-purple-500/10',
     },
     {
-      title: 'Estimated Cart Value',
-      value: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(summary.estimatedCartValue),
+      title: 'Valor est. de carritos',
+      value: new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(summary.estimatedCartValue),
       icon: DollarSign,
       color: 'text-orange-500',
       bgColor: 'bg-orange-500/10',
@@ -44,16 +44,16 @@ export function BuyerMetrics({ summary }: BuyerMetricsProps) {
       {metrics.map((metric, i) => {
         const Icon = metric.icon;
         return (
-          <div key={i} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
             <div className="flex items-center gap-4">
               <div className={`p-3 rounded-lg ${metric.bgColor}`}>
                 <Icon className={`w-6 h-6 ${metric.color}`} />
               </div>
               <div>
-                <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                <p className="text-sm font-medium text-slate-500">
                   {metric.title}
                 </p>
-                <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+                <p className="text-2xl font-bold text-slate-800">
                   {metric.value}
                 </p>
               </div>

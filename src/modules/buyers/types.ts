@@ -12,6 +12,8 @@ export interface BuyerCity {
 
 export interface TopProduct {
   productId: string;
+  productName: string;
+  storeName: string;
   timesAdded: number;
 }
 

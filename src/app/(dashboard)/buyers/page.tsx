@@ -27,30 +27,53 @@ export default async function BuyersPage() {
     getBuyerActivityAction(),
   ]);
 
+  const groupedCitiesMap = cities.reduce((acc, curr) => {
+    const rawCity = curr.city ? curr.city.trim() : 'Desconocido';
+    const normalizedCity = rawCity.charAt(0).toUpperCase() + rawCity.slice(1).toLowerCase();
+    
+    if (!acc[normalizedCity]) {
+      acc[normalizedCity] = 0;
+    }
+    acc[normalizedCity] += curr.buyers;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const processedCities = Object.entries(groupedCitiesMap)
+    .map(([city, buyers]) => ({ city, buyers }))
+    .sort((a, b) => b.buyers - a.buyers)
+    .slice(0, 5);
+
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
-      <AutoRefresh intervalMs={20000} />
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Buyers</h1>
-        <p className="text-zinc-500 dark:text-zinc-400 mt-2">Métricas y análisis de compradores</p>
-      </div>
-
-      <BuyerMetrics summary={summary} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <TopProductsTable products={topProducts} />
-            <TopBuyersTable buyers={topCartValues} />
-          </div>
-          <div className="h-[400px]">
-            <BuyerCitiesChart cities={cities} />
-          </div>
-        </div>
+    <div className="min-h-screen bg-slate-50 text-slate-800 p-8 animate-in fade-in duration-500">
+      <div className="max-w-7xl mx-auto space-y-6">
+        <AutoRefresh intervalMs={20000} />
         
-        <div className="lg:col-span-1 h-[600px] lg:h-auto">
-          <RecentActivity activities={activity} />
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900">Compradores</h1>
+            <p className="text-slate-500 text-sm mt-1">Métricas y análisis de comportamiento de los compradores</p>
+          </div>
         </div>
+
+        <section>
+          <BuyerMetrics summary={summary} />
+        </section>
+
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <TopProductsTable products={topProducts.slice(0, 5)} />
+              <TopBuyersTable buyers={topCartValues.slice(0, 5)} />
+            </div>
+            <div className="h-[400px]">
+              <BuyerCitiesChart cities={processedCities} />
+            </div>
+          </div>
+          
+          <div className="lg:col-span-1 h-[600px] lg:h-auto">
+            <RecentActivity activities={activity.slice(0, 10)} />
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -19,7 +19,9 @@ async function fetchWithAuth<T>(endpoint: string): Promise<T> {
     tokenPreview: token ? `${token.substring(0, 30)}...` : 'NULL',
   });
 
-  const response = await fetch(`${API_BASE_URL}/api/analytics/buyers/${endpoint}`, {
+  const url = `${API_BASE_URL}/api/analytics/buyers/${endpoint}`;
+  console.log(`[Buyer API Debug] Fetching from: ${url}`);
+  const response = await fetch(url, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -28,7 +30,11 @@ async function fetchWithAuth<T>(endpoint: string): Promise<T> {
   });
 
   if (!response.ok) {
-    console.error(`[Buyer API Error] ${endpoint}: ${response.status} ${response.statusText}`);
+    const isRedirect = response.status >= 300 && response.status < 400;
+    const location = response.headers.get('location');
+    console.error(`[Buyer API Error] ${endpoint}: ${response.status} ${response.statusText}${isRedirect ? ` (Redirect to: ${location})` : ''}`);
+    const text = await response.text();
+    console.error(`[Buyer API Error Text] ${text.substring(0, 200)}`);
     throw new Error(`Failed to fetch ${endpoint}`);
   }
 
