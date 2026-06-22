@@ -5,7 +5,7 @@ import {
   PlatformHealthData, TopProductData, Period
 } from '../types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_SELLER_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.PAYMENTS_APP_URL;
 
 /**
  * Helper genérico para hacer fetch con autenticación al backend de analytics.
