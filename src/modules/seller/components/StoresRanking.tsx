@@ -29,7 +29,7 @@ export function StoresRanking({ data }: StoresRankingProps) {
               <th className="pb-3 font-medium">#</th>
               <th className="pb-3 font-medium">Tienda</th>
               <th className="pb-3 font-medium text-right">Órdenes</th>
-              <th className="pb-3 font-medium text-right">Revenue</th>
+              <th className="pb-3 font-medium text-right">Ingresos</th>
               <th className="pb-3 font-medium text-right">Ticket prom.</th>
               <th className="pb-3 font-medium text-center">Estado</th>
             </tr>
@@ -43,11 +43,10 @@ export function StoresRanking({ data }: StoresRankingProps) {
                 <td className="py-3 text-right font-medium">{formatCurrency(store.revenue)}</td>
                 <td className="py-3 text-right text-slate-500">{formatCurrency(store.averageTicket)}</td>
                 <td className="py-3 text-center">
-                  <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${
-                    store.status === 'Abierta' 
-                      ? 'bg-emerald-100 text-emerald-700' 
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${store.status === 'Abierta'
+                      ? 'bg-emerald-100 text-emerald-700'
                       : 'bg-amber-100 text-amber-700'
-                  }`}>
+                    }`}>
                     {store.status}
                   </span>
                 </td>

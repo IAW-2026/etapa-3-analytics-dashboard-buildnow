@@ -61,7 +61,7 @@ export function KPIGrid({ data }: KPIGridProps) {
         </div>
         <div>
           <p className="text-3xl font-bold text-slate-800">{data.registeredSellers.current}</p>
-          <p className="text-sm text-slate-500 mt-1">{data.registeredSellers.unassigned} sin tienda asignada</p>
+          <div className="mt-1 h-5" />
         </div>
       </div>
     </div>
