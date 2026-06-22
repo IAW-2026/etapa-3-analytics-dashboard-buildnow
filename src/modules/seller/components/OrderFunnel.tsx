@@ -23,7 +23,7 @@ export function OrderFunnel({ data }: OrderFunnelProps) {
     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm h-full flex flex-col">
       <div className="flex items-center gap-2 text-slate-800 font-medium mb-6">
         <Filter size={18} className="text-slate-500" />
-        <h2>Funnel global de órdenes</h2>
+        <h2>Estado global de ordenes</h2>
       </div>
 
       <div className="flex flex-col gap-4 flex-1 justify-center">
@@ -32,10 +32,10 @@ export function OrderFunnel({ data }: OrderFunnelProps) {
             <div className="w-28 font-medium text-slate-600 truncate" title={item.status}>
               {item.status}
             </div>
-            
+
             <div className="flex-1 flex items-center gap-3">
               <div className="flex-1 bg-slate-100 h-6 rounded-md overflow-hidden flex">
-                <div 
+                <div
                   className={`h-full ${getColorForStatus(item.status)} transition-all duration-500`}
                   style={{ width: `${item.percentage}%` }}
                 />
