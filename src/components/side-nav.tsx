@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard, Users, Store, ShoppingCart,
   Truck, CreditCard, AlertTriangle, Settings,
-  FileSearch, Server, LogOut, ChartNoAxesCombined
+  FileSearch, Server, LogOut, ChartNoAxesCombined, CircleDollarSign
 } from 'lucide-react';
 
 const navItems = [
@@ -13,7 +13,8 @@ const navItems = [
   { label: 'Stores', href: '/stores', icon: Store },
   { label: 'Orders', href: '/orders', icon: ShoppingCart },
   { label: 'Delivery', href: '/delivery', icon: Truck },
-  { label: 'Buyers', href: '/buyers', icon: Users }
+  { label: 'Buyers', href: '/buyers', icon: Users },
+  { label: 'Finanzas', href: '/finances', icon: CircleDollarSign }
 ];
 
 interface SideNavProps {
