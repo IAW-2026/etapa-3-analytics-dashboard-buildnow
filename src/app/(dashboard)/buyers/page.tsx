@@ -70,8 +70,8 @@ export default async function BuyersPage() {
             </div>
           </div>
           
-          <div className="lg:col-span-1 h-[600px] lg:h-auto">
-            <RecentActivity activities={activity.slice(0, 10)} />
+          <div className="lg:col-span-1">
+            <RecentActivity activities={activity.slice(0, 6)} />
           </div>
         </section>
       </div>
