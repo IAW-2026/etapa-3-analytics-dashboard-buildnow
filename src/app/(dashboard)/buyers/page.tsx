@@ -18,7 +18,13 @@ export const metadata = {
   description: 'Métricas y análisis de compradores',
 };
 
-export default async function BuyersPage() {
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export const dynamic = 'force-dynamic';
+
+export default async function BuyersPage({ searchParams }: PageProps) {
   const [summary, cities, topProducts, topCartValues, activity] = await Promise.all([
     getBuyerSummaryAction(),
     getBuyerCitiesAction(),

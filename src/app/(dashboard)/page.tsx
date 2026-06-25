@@ -1,20 +1,12 @@
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { Store, ShoppingCart, Truck, Users, CircleDollarSign, ArrowRight } from 'lucide-react';
+import { ShoppingCart, Truck, Users, CircleDollarSign, ArrowRight } from 'lucide-react';
 
 const MODULES = [
   {
-    title: 'Stores',
-    description: 'Gestión y seguimiento general del rendimiento operativo e ingresos de las tiendas de la plataforma.',
-    href: '/stores',
-    icon: Store,
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-500/10'
-  },
-  {
     title: 'Orders',
-    description: 'Análisis del flujo de ventas, comportamiento de compra y desempeño global de los pedidos.',
+    description: 'Análisis del flujo de ventas, desempeño global de pedidos y gestión del rendimiento operativo de las tiendas.',
     href: '/orders',
     icon: ShoppingCart,
     color: 'text-emerald-500',
@@ -70,8 +62,8 @@ export default async function DashboardPage() {
         {MODULES.map((module) => {
           const Icon = module.icon;
           return (
-            <Link 
-              key={module.href} 
+            <Link
+              key={module.href}
               href={module.href}
               className="industrial-card group rounded-xl p-6 transition-all duration-300 hover:shadow-md hover:border-[var(--color-primary)] hover:-translate-y-1 flex flex-col h-full"
             >
@@ -81,11 +73,11 @@ export default async function DashboardPage() {
                 </div>
                 <ArrowRight className="w-5 h-5 text-[var(--color-outline-variant)] group-hover:text-[var(--color-primary)] transition-colors" />
               </div>
-              
+
               <h3 className="text-xl font-bold text-[var(--color-on-surface)] mb-2 group-hover:text-[var(--color-primary)] transition-colors">
                 {module.title}
               </h3>
-              
+
               <p className="text-[var(--color-on-surface-variant)] text-sm leading-relaxed flex-grow">
                 {module.description}
               </p>
@@ -93,7 +85,7 @@ export default async function DashboardPage() {
           );
         })}
       </div>
-      
+
       {/* Footer info */}
       <div className="mt-8 text-center text-sm text-[var(--color-on-surface-variant)]">
         <p>Los datos mostrados en los paneles se actualizan en tiempo real.</p>
