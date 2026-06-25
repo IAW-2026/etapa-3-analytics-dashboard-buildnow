@@ -15,6 +15,8 @@ export const metadata = {
   description: 'Vista general de finanzas y operaciones',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function FinancesPage() {
   const [summary, paymentStatus, payouts, rejectedPayments] = await Promise.all([
     getFinanceSummaryAction(),

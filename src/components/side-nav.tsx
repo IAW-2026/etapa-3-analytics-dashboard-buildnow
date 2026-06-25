@@ -3,14 +3,13 @@
 import { useClerk } from '@clerk/nextjs';
 import { usePathname, useRouter } from 'next/navigation';
 import {
-  LayoutDashboard, Users, Store, ShoppingCart,
+  LayoutDashboard, Users, ShoppingCart,
   Truck, CreditCard, AlertTriangle, Settings,
   FileSearch, Server, LogOut, ChartNoAxesCombined, CircleDollarSign
 } from 'lucide-react';
 
 const navItems = [
   { label: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { label: 'Stores', href: '/stores', icon: Store },
   { label: 'Orders', href: '/orders', icon: ShoppingCart },
   { label: 'Delivery', href: '/delivery', icon: Truck },
   { label: 'Buyers', href: '/buyers', icon: Users },
